@@ -1,0 +1,208 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<Dakk_Manager.Entities.Dakk_Data>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2></h2>
+
+@using (Html.BeginForm("Index", "Dakk_Data", FormMethod.Get))
+{
+        <p style="position:relative;float:right;margin-left:15px">
+            <input class="btn btn-primary" type="button" title="Create New" value="Create New" onclick="location.href = '/Dakk_Data/Create'" />
+        </p>
+        <p style="position:relative;float:right;margin-left:10px;">
+            Find: <input id="SearchString" name="SearchString" type="text" value="" />
+            <input type="submit" value="Search" class="btn btn-danger" />
+        </p>
+        <p style="position:relative;display:inline-block;float:right;margin-left:5px;">
+            Filter By Upload Date : <input type="date" name="uploadDate" autocomplete="off" />
+        </p>
+        <p style="position:relative;display:inline-block;float:right;margin-left:5px;">
+            Filter By Date on Dakk : <input type="date" name="DateonDakk" autocomplete="off" />
+        </p>
+        <p style="position:center;float:left;top:-50px; left:50px; right:50px"> 
+           <p> Pending:@Html.Label((string)ViewBag.Pending_Status) </p>
+           <p> Seen:@Html.Label((string)ViewBag.Seen_Status) </p>
+           <p> Urgent:@Html.Label((string)ViewBag.Urgent_Status) </p> 
+        </p>
+        
+   
+    <table class="table table-bordered @*table-condensed table-responsive table-striped*@" style="text-align:start; height:100%; width:100%;">
+        <tr>
+            <th>
+                @Html.DisplayName("UploadTime")
+                @*@Html.DisplayNameFor(model => model.First().UploadTime)*@
+            </th>
+
+            <th>
+                @Html.DisplayName("GivenDakkNumber")
+                @*@Html.DisplayNameFor(model => model.First().Number)*@
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Department)
+            </th>
+            <th>
+                @Html.DisplayName("DateOfDakk")
+                @*@Html.DisplayNameFor(model => model.First().DateOnLetter)*@
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Subject)
+            </th>
+            <th>
+                @Html.DisplayName("IssuedNumber")
+                @*@Html.DisplayNameFor(model => model.First().Givennumber)*@
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Pages)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Addressee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Sectionoforigin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Receivedby)
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.First().Pdfdirectory)*@
+                @Html.DisplayName("Download Dakk")
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.First().Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().ForwardTo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Comments)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            if (item.Status=="Pending")
+            {
+            <tr style="background-color:#FF4D4D">
+                <td>
+                    @Html.DisplayFor(modelItem => item.UploadTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOnLetter)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Subject)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Givennumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pages)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Addressee)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sectionoforigin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Receivedby)
+                </td>
+                <td>
+                    @Html.ActionLink("Download PDF", "Download", new { dakkname = item.Pdfdirectory })
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ForwardTo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comments)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }) 
+                </td>
+            </tr>
+            }
+            else
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UploadTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Number)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Department)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateOnLetter)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subject)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Givennumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pages)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Addressee)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sectionoforigin)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Receivedby)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Download PDF", "Download", new { dakkname = item.Pdfdirectory })
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ForwardTo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Comments)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+  
+}
+
+@Html.PagedListPager(Model, pageNumber => Url.Action("Index", new
+{
+    pageNumber,
+    SearchString = Request.QueryString["SearchString"],
+    uploadDate = Request.QueryString["uploadDate"],
+    DateonDakk = Request.QueryString["DateonDakk"]
+}),new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayItemSliceAndTotal = true })
