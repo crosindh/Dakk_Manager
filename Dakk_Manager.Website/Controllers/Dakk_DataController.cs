@@ -15,7 +15,7 @@ using PagedList.Mvc;
 
 namespace Dakk_Manager.Website.Controllers
 {
-    [Authorize] // need to add usertypes
+    [Authorize]
     public class Dakk_DataController : Controller
     {
         private DMContext db = new DMContext();

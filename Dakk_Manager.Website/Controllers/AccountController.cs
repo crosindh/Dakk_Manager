@@ -163,7 +163,7 @@ namespace Dakk_Manager.Website.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Dakk_Data"); // first there was "Index","Home"
                 }
                 AddErrors(result);
             }
@@ -392,8 +392,7 @@ namespace Dakk_Manager.Website.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            /*return RedirectToAction("Index", "Home");*/
-            return RedirectToAction("Login", "Account"); 
+            return RedirectToAction("Index", "Dakk_Data"); // first there was "Index", "Home"
         }
 
         //
