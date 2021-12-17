@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dakk_Manager.Entities
+namespace Dakk_Manager.Website.Models
 {
     public class Dakk_Data 
     {
@@ -37,7 +37,7 @@ namespace Dakk_Manager.Entities
         [Display(Name = "Received Date Of Dakk")]
         public string DateReceived { get; set; }
 
-        [Required]
+        //[Required]
         public string Department { get; set; }
 
         [Required]

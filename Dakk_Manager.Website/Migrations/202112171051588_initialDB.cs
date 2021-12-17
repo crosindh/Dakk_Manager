@@ -1,9 +1,9 @@
-namespace Dakk_Manager.Database.Migrations
+namespace Dakk_Manager.Website.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initial_DB : DbMigration
+    public partial class initialDB : DbMigration
     {
         public override void Up()
         {
@@ -19,7 +19,7 @@ namespace Dakk_Manager.Database.Migrations
                         Comments = c.String(),
                         DateOnLetter = c.String(),
                         DateReceived = c.String(),
-                        Department = c.String(nullable: false),
+                        Department = c.String(),
                         Subject = c.String(nullable: false),
                         Givennumber = c.String(nullable: false),
                         Pages = c.Int(nullable: false),

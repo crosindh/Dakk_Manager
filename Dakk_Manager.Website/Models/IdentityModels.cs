@@ -21,7 +21,7 @@ namespace Dakk_Manager.Website.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("DMContext", throwIfV1Schema: false)
         {
         }
 

@@ -1,4 +1,4 @@
-﻿@model Dakk_Manager.Entities.Dakk_Data
+﻿@model Dakk_Manager.Website.Models.Dakk_Data
 
 @{
     ViewBag.Title = "Create";
@@ -57,7 +57,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Receivedby, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Receivedby, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.Receivedby, new { htmlAttributes = new { @class = "form-control", @Value = User.Identity.Name.ToString() }})
                     @Html.ValidationMessageFor(model => model.Receivedby, "", new { @class = "text-danger" })
                 </div>
             </div>

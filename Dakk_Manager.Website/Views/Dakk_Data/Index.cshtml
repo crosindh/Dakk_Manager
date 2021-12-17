@@ -1,6 +1,6 @@
 ﻿@using PagedList
 @using PagedList.Mvc
-@model IPagedList<Dakk_Manager.Entities.Dakk_Data>
+@model IPagedList<Dakk_Manager.Website.Models.Dakk_Data>
 
 @{
     ViewBag.Title = "Index";
@@ -88,7 +88,7 @@
         {
             if (item.Status=="Pending")
             {
-            <tr style="background-color:#FF4D4D">
+            <tr @*style="background-color:#FF4D4D"*@>
                 <td>
                     @Html.DisplayFor(modelItem => item.UploadTime)
                 </td>

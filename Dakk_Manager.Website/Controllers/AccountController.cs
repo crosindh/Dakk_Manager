@@ -20,6 +20,7 @@ namespace Dakk_Manager.Website.Controllers
 
         public AccountController()
         {
+          
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -151,7 +152,7 @@ namespace Dakk_Manager.Website.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email/*, Email = model.Email*/ };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

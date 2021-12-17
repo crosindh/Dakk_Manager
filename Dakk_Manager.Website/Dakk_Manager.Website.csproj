@@ -203,6 +203,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Context\DMContext.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Dakk_DataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -210,7 +211,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202112171051588_initialDB.cs" />
+    <Compile Include="Migrations\202112171051588_initialDB.Designer.cs">
+      <DependentUpon>202112171051588_initialDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Dakk_Data.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -297,14 +304,9 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Dakk_Manager.Database\Dakk_Manager.Database.csproj">
-      <Project>{a8ac166b-1e72-4870-ae1c-237d0469a483}</Project>
-      <Name>Dakk_Manager.Database</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Dakk_Manager.Entities\Dakk_Manager.Entities.csproj">
-      <Project>{6f762c9f-b37b-4c94-be00-38e743b5fc63}</Project>
-      <Name>Dakk_Manager.Entities</Name>
-    </ProjectReference>
+    <EmbeddedResource Include="Migrations\202112171051588_initialDB.resx">
+      <DependentUpon>202112171051588_initialDB.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
