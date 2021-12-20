@@ -6,10 +6,29 @@
     <title>@ViewBag.Title - Dakk Manager</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <style type="text/css">
+        .navbar {
+            background-color: #006E3E;
+            background-image: none;
+        }
 
+            .navbar li a {
+                color: #ffffff !important;
+            }
+
+        .navbar-header a {
+            color: #ffffff !important;
+        }
+
+        ul.nav a:hover, .navbar-header a:hover 
+        { 
+            color: #808080 !important; 
+
+        }
+    </style>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:#006E3E;">
+    <div class="navbar navbar-inverse navbar-fixed-top" @*style="background-color:#006E3E;*@ ">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -17,20 +36,19 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-              @Html.ActionLink("Planning & Development", "Index", "Dakk_Data", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Planning & Development", "Index", "Dakk_Data", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @*<li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                     <li>@Html.ActionLink("Dakk Data", "Index", "Dakk_Data")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -38,7 +56,6 @@
             <p>&copy; @DateTime.Now.Year - Central Record Office Sindh (CRO)</p>
         </footer>
     </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

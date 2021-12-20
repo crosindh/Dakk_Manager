@@ -206,6 +206,9 @@ namespace Dakk_Manager.Website.Controllers
                 var user = await UserManager.FindByNameAsync(model.Email);
                 if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
                 {
+                    UserManager.RemovePassword(user.Id);
+
+                    UserManager.AddPassword(user.Id,"123456");
                     // Don't reveal that the user does not exist or is not confirmed
                     return View("ForgotPasswordConfirmation");
                 }

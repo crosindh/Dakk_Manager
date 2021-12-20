@@ -84,8 +84,8 @@ namespace Dakk_Manager.Website.Models
     public class ResetPasswordViewModel
     {
         [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
+        //[EmailAddress]
+        [Display(Name = "Username")]
         public string Email { get; set; }
 
         [Required]
@@ -105,8 +105,8 @@ namespace Dakk_Manager.Website.Models
     public class ForgotPasswordViewModel
     {
         [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
+        //[EmailAddress]
+        [Display(Name = "Username")]
         public string Email { get; set; }
     }
 }
