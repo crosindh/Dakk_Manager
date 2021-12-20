@@ -453,7 +453,7 @@ namespace Dakk_Manager.Website.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Dakk_Data");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
