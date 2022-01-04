@@ -40,7 +40,7 @@ namespace Dakk_Manager.Website.Controllers
         {
 
 
-            var Dakk_View = db.Dakk_Data.Where(x => x.Receivedby.Contains(User.Identity.Name) || x.ForwardTo.Contains(User.Identity.Name)).ToList();
+            //var Dakk_View = db.Dakk_Data.Where(x => x.Receivedby.Contains(User.Identity.Name) || x.ForwardTo.Contains(User.Identity.Name)).ToList();
             SetStatus_On_Dashboard();
 
 
@@ -59,36 +59,41 @@ namespace Dakk_Manager.Website.Controllers
             if (SearchString != null)
             {
 
-                //return View(db.Dakk_Data.Where(x => (String.IsNullOrEmpty(SearchString) || x.Number.Contains(SearchString) || x.Department.Contains(SearchString) || x.Givennumber.Contains(SearchString) ||
-                //                                                  x.Receivedby.Contains(SearchString) || x.Sectionoforigin.Contains(SearchString) ||
-                //                                                  x.Givennumber.Contains(SearchString) || x.Status.Contains(SearchString) ||
-                //                                                  x.Subject.Contains(SearchString) || x.Receivedby.Contains(SearchString) || x.ForwardTo.Contains(SearchString) || x.Comments.Contains(SearchString))
-                //                                                  && (String.IsNullOrEmpty(uploadDate) || x.UploadTime.Contains(uploadDate))
-                //                                                  && (String.IsNullOrEmpty(DateonDakk) || x.DateOnLetter.Contains(DateonDakk))).ToList().ToPagedList(pageNumber ?? 1, 5));
-
-                return View(db.Dakk_Data.Where(x => (String.IsNullOrEmpty(SearchString) || x.Number.Contains(SearchString) || x.Department.Contains(SearchString) || x.Givennumber.Contains(SearchString) ||
-                                                                   x.Receivedby.Contains(SearchString) || x.Sectionoforigin.Contains(SearchString) ||
-                                                                   x.Givennumber.Contains(SearchString) || x.Status.Contains(SearchString) ||
-                                                                   x.Subject.Contains(SearchString) || x.Comments.Contains(SearchString))  || x.ForwardTo.Contains(User.Identity.Name) && x.Receivedby.Contains(User.Identity.Name)
-                                                                   && (String.IsNullOrEmpty(uploadDate) || x.UploadTime.Contains(uploadDate))
-                                                                   && (String.IsNullOrEmpty(DateonDakk) || x.DateOnLetter.Contains(DateonDakk))).ToList().ToPagedList(pageNumber ?? 1, 5));
+                return View(db.Dakk_Data.Where(x =>((String.IsNullOrEmpty(SearchString) || x.Number.Contains(SearchString) || x.Department.Contains(SearchString)
+                                                                  || x.Sectionoforigin.Contains(SearchString) || x.Givennumber.Contains(SearchString) || x.Status.Contains(SearchString) ||
+                                                                  x.Subject.Contains(SearchString) || x.ForwardTo.Contains(SearchString))
+                                                                  && (x.Receivedby.Contains(User.Identity.Name)) 
+                                                                  && (String.IsNullOrEmpty(DateonDakk) || x.DateOnLetter.Contains(DateonDakk)) 
+                                                                  && (String.IsNullOrEmpty(uploadDate) || x.UploadTime.Contains(uploadDate)))).ToList().ToPagedList(pageNumber ?? 1, 10));
 
             }
             else
             {
-                return View(db.Dakk_Data.Where(x => x.Receivedby.Contains(User.Identity.Name) || x.ForwardTo.Contains(User.Identity.Name)).ToList().ToPagedList(pageNumber ?? 1, 5));
+                return View(db.Dakk_Data.Where(x => x.Receivedby.Contains(User.Identity.Name) || x.ForwardTo.Contains(User.Identity.Name)).ToList().ToPagedList(pageNumber ?? 1, 10));
             }
         }
 
         private void SetStatus_On_Dashboard()
         {
-            var Check_Status = db.Dakk_Data.Where(x => x.Receivedby.Contains(User.Identity.Name)).ToList();
-            Check_Status = db.Dakk_Data.Where(x => x.Status == "Pending" && x.Receivedby.Contains(User.Identity.Name) || x.ForwardTo.Contains(User.Identity.Name)).ToList();
-            ViewBag.Pending_Status = Check_Status.Count().ToString();
-            Check_Status = db.Dakk_Data.Where(x => x.Status == "Seen" && x.Receivedby.Contains(User.Identity.Name) || x.ForwardTo.Contains(User.Identity.Name)).ToList();
-            ViewBag.Seen_Status = Check_Status.Count().ToString();
-            Check_Status = db.Dakk_Data.Where(x => x.Status == "Urgent" && x.Receivedby.Contains(User.Identity.Name) || x.ForwardTo.Contains(User.Identity.Name)).ToList();
-            ViewBag.Urgent_Status = Check_Status.Count().ToString();
+           
+            var Check_Status1 = db.Dakk_Data.Where(x => x.Receivedby.Contains(User.Identity.Name)).ToList();
+            var Check_Status2 = db.Dakk_Data.Where(x => x.Receivedby.Contains(User.Identity.Name)).ToList();
+
+            Check_Status1 = db.Dakk_Data.Where(x => x.Status == "Pending" && (x.Receivedby.Contains(User.Identity.Name))).ToList();
+            Check_Status2 = db.Dakk_Data.Where(x => x.Status == "Pending" && (x.ForwardTo.Contains(User.Identity.Name))).ToList();
+            ViewBag.Pending_Status = (Check_Status1.Count() + Check_Status2.Count()).ToString();
+
+            Check_Status1 = db.Dakk_Data.Where(x => x.Status == "Seen" && (x.Receivedby.Contains(User.Identity.Name))).ToList();
+            Check_Status2 = db.Dakk_Data.Where(x => x.Status == "Seen" && (x.ForwardTo.Contains(User.Identity.Name))).ToList();
+            ViewBag.Seen_Status = (Check_Status1.Count() + Check_Status2.Count()).ToString();
+
+            Check_Status1 = db.Dakk_Data.Where(x => x.Status == "Urgent" && (x.Receivedby.Contains(User.Identity.Name))).ToList();
+            Check_Status2 = db.Dakk_Data.Where(x => x.Status == "Urgent" && (x.ForwardTo.Contains(User.Identity.Name))).ToList();
+            ViewBag.Urgent_Status = (Check_Status1.Count() + Check_Status2.Count()).ToString();
+
+            Check_Status1 = db.Dakk_Data.Where(x => x.Status == "Objection" && (x.Receivedby.Contains(User.Identity.Name))).ToList();
+            Check_Status2 = db.Dakk_Data.Where(x => x.Status == "Objection" && (x.ForwardTo.Contains(User.Identity.Name))).ToList();
+            ViewBag.Objection_Status = (Check_Status1.Count() + Check_Status2.Count()).ToString();
         }
 
         // GET: Dakk_Data/Details/5
@@ -147,7 +152,7 @@ namespace Dakk_Manager.Website.Controllers
 
                     string extension = Path.GetExtension(file.FileName);
                     _FileName = dakk_Data.ID + "_" + dakk_Data.Sectionoforigin + dakk_Data.Givennumber + "_" + dakk_Data.DateOnLetter + extension;
-                    string _path = Path.Combine(Server.MapPath("~/App_Data/Downloads"), _FileName);
+                    string _path = Path.Combine(Server.MapPath("~/Downloads"), _FileName);
                     string uploadedfilename;
                     uploadedfilename = _path;
                     dakk_Data.Pdfdirectory = _FileName;
@@ -232,7 +237,7 @@ namespace Dakk_Manager.Website.Controllers
 
         public ActionResult Download(string dakkname)
         {
-            string path = Server.MapPath("~/App_Data/Downloads");
+            string path = Server.MapPath("~/Downloads");
 
             byte[] fileBytes = System.IO.File.ReadAllBytes(path + @"\" + dakkname);
 

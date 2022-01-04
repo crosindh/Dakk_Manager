@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -25,6 +26,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,32 +46,36 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.0.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.20.0.103, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.20.0\lib\net452\Microsoft.AI.DependencyCollector.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.0.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.20.0.103, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.20.0\lib\net452\Microsoft.AI.PerfCounterCollector.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.0.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.20.0.103, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.20.0\lib\net452\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.AI.Web, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.0.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+    <Reference Include="Microsoft.AI.Web, Version=2.20.0.103, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.20.0\lib\net452\Microsoft.AI.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.AI.WindowsServer, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.0.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.20.0.103, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.20.0\lib\net452\Microsoft.AI.WindowsServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.ApplicationInsights, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.2.0.0\lib\net46\Microsoft.ApplicationInsights.dll</HintPath>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.20.0.103, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.20.0\lib\net46\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.TelemetryCorrelation, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.TelemetryCorrelation.1.0.8\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -86,8 +92,26 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\netstandard1.1\System.Buffers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.5.0.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\netstandard1.1\System.Memory.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -211,9 +235,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202112171051588_initialDB.cs" />
-    <Compile Include="Migrations\202112171051588_initialDB.Designer.cs">
-      <DependentUpon>202112171051588_initialDB.cs</DependentUpon>
+    <Compile Include="Migrations\202112260503330_initialDB.cs" />
+    <Compile Include="Migrations\202112260503330_initialDB.Designer.cs">
+      <DependentUpon>202112260503330_initialDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -224,20 +248,229 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\PagedList.css" />
-    <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="FrontEnd\build\config\postcss.config.js" />
+    <Content Include="FrontEnd\build\config\rollup.config.js" />
+    <Content Include="FrontEnd\build\js\AdminLTE.js" />
+    <Content Include="FrontEnd\build\js\CardRefresh.js" />
+    <Content Include="FrontEnd\build\js\CardWidget.js" />
+    <Content Include="FrontEnd\build\js\ControlSidebar.js" />
+    <Content Include="FrontEnd\build\js\DirectChat.js" />
+    <Content Include="FrontEnd\build\js\Dropdown.js" />
+    <Content Include="FrontEnd\build\js\ExpandableTable.js" />
+    <Content Include="FrontEnd\build\js\Fullscreen.js" />
+    <Content Include="FrontEnd\build\js\IFrame.js" />
+    <Content Include="FrontEnd\build\js\Layout.js" />
+    <Content Include="FrontEnd\build\js\NavbarSearch.js" />
+    <Content Include="FrontEnd\build\js\PushMenu.js" />
+    <Content Include="FrontEnd\build\js\SidebarSearch.js" />
+    <Content Include="FrontEnd\build\js\Toasts.js" />
+    <Content Include="FrontEnd\build\js\TodoList.js" />
+    <Content Include="FrontEnd\build\js\Treeview.js" />
+    <Content Include="FrontEnd\build\npm\DocsPlugins.js" />
+    <Content Include="FrontEnd\build\npm\DocsPublish.js" />
+    <Content Include="FrontEnd\build\npm\Plugins.js" />
+    <Content Include="FrontEnd\build\npm\Publish.js" />
+    <Content Include="FrontEnd\build\npm\vnu-jar.js" />
+    <Content Include="FrontEnd\dist\css\adminlte.css" />
+    <Content Include="FrontEnd\dist\css\adminlte.min.css" />
+    <Content Include="FrontEnd\dist\css\alt\adminlte.components.css" />
+    <Content Include="FrontEnd\dist\css\alt\adminlte.components.min.css" />
+    <Content Include="FrontEnd\dist\css\alt\adminlte.core.css" />
+    <Content Include="FrontEnd\dist\css\alt\adminlte.core.min.css" />
+    <Content Include="FrontEnd\dist\css\alt\adminlte.extra-components.css" />
+    <Content Include="FrontEnd\dist\css\alt\adminlte.extra-components.min.css" />
+    <Content Include="FrontEnd\dist\css\alt\adminlte.light.css" />
+    <Content Include="FrontEnd\dist\css\alt\adminlte.light.min.css" />
+    <Content Include="FrontEnd\dist\css\alt\adminlte.pages.css" />
+    <Content Include="FrontEnd\dist\css\alt\adminlte.pages.min.css" />
+    <Content Include="FrontEnd\dist\css\alt\adminlte.plugins.css" />
+    <Content Include="FrontEnd\dist\css\alt\adminlte.plugins.min.css" />
+    <Content Include="FrontEnd\dist\img\CRR logo 8.1.jpg" />
+    <Content Include="FrontEnd\dist\js\adminlte.js" />
+    <Content Include="FrontEnd\dist\js\adminlte.min.js" />
+    <Content Include="FrontEnd\dist\js\demo.js" />
+    <Content Include="FrontEnd\dist\js\pages\dashboard.js" />
+    <Content Include="FrontEnd\dist\js\pages\dashboard2.js" />
+    <Content Include="FrontEnd\dist\js\pages\dashboard3.js" />
+    <Content Include="FrontEnd\plugins\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="FrontEnd\plugins\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="FrontEnd\plugins\bootstrap\js\bootstrap.js" />
+    <Content Include="FrontEnd\plugins\bootstrap\js\bootstrap.min.js" />
+    <Content Include="FrontEnd\plugins\fontawesome-free\css\all.css" />
+    <Content Include="FrontEnd\plugins\fontawesome-free\css\all.min.css" />
+    <Content Include="FrontEnd\plugins\fontawesome-free\css\brands.css" />
+    <Content Include="FrontEnd\plugins\fontawesome-free\css\brands.min.css" />
+    <Content Include="FrontEnd\plugins\fontawesome-free\css\fontawesome.css" />
+    <Content Include="FrontEnd\plugins\fontawesome-free\css\fontawesome.min.css" />
+    <Content Include="FrontEnd\plugins\fontawesome-free\css\regular.css" />
+    <Content Include="FrontEnd\plugins\fontawesome-free\css\regular.min.css" />
+    <Content Include="FrontEnd\plugins\fontawesome-free\css\solid.css" />
+    <Content Include="FrontEnd\plugins\fontawesome-free\css\solid.min.css" />
+    <Content Include="FrontEnd\plugins\fontawesome-free\css\svg-with-js.css" />
+    <Content Include="FrontEnd\plugins\fontawesome-free\css\svg-with-js.min.css" />
+    <Content Include="FrontEnd\plugins\fontawesome-free\css\v4-shims.css" />
+    <Content Include="FrontEnd\plugins\fontawesome-free\css\v4-shims.min.css" />
+    <Content Include="FrontEnd\plugins\fontawesome-free\webfonts\fa-brands-400.svg" />
+    <Content Include="FrontEnd\plugins\fontawesome-free\webfonts\fa-regular-400.svg" />
+    <Content Include="FrontEnd\plugins\fontawesome-free\webfonts\fa-solid-900.svg" />
+    <Content Include="FrontEnd\plugins\icheck-bootstrap\icheck-bootstrap.css" />
+    <Content Include="FrontEnd\plugins\icheck-bootstrap\icheck-bootstrap.min.css" />
+    <Content Include="FrontEnd\plugins\jquery\jquery.js" />
+    <Content Include="FrontEnd\plugins\jquery\jquery.min.js" />
+    <Content Include="FrontEnd\plugins\jquery\jquery.slim.js" />
+    <Content Include="FrontEnd\plugins\jquery\jquery.slim.min.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="favicon.ico" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="FrontEnd\build\config\.eslintrc.json" />
+    <Content Include="FrontEnd\build\npm\.eslintrc.json" />
+    <Content Include="FrontEnd\build\scss\adminlte.scss" />
+    <Content Include="FrontEnd\build\scss\mixins\_accent.scss" />
+    <Content Include="FrontEnd\build\scss\mixins\_animations.scss" />
+    <Content Include="FrontEnd\build\scss\mixins\_backgrounds.scss" />
+    <Content Include="FrontEnd\build\scss\mixins\_cards.scss" />
+    <Content Include="FrontEnd\build\scss\mixins\_custom-forms.scss" />
+    <Content Include="FrontEnd\build\scss\mixins\_dark-mode.scss" />
+    <Content Include="FrontEnd\build\scss\mixins\_direct-chat.scss" />
+    <Content Include="FrontEnd\build\scss\mixins\_miscellaneous.scss" />
+    <Content Include="FrontEnd\build\scss\mixins\_navbar.scss" />
+    <Content Include="FrontEnd\build\scss\mixins\_scrollbar.scss" />
+    <Content Include="FrontEnd\build\scss\mixins\_sidebar.scss" />
+    <Content Include="FrontEnd\build\scss\mixins\_toasts.scss" />
+    <Content Include="FrontEnd\build\scss\mixins\_touch-support.scss" />
+    <Content Include="FrontEnd\build\scss\pages\_404_500_errors.scss" />
+    <Content Include="FrontEnd\build\scss\pages\_e-commerce.scss" />
+    <Content Include="FrontEnd\build\scss\pages\_iframe.scss" />
+    <Content Include="FrontEnd\build\scss\pages\_invoice.scss" />
+    <Content Include="FrontEnd\build\scss\pages\_kanban.scss" />
+    <Content Include="FrontEnd\build\scss\pages\_lockscreen.scss" />
+    <Content Include="FrontEnd\build\scss\pages\_login_and_register.scss" />
+    <Content Include="FrontEnd\build\scss\pages\_mailbox.scss" />
+    <Content Include="FrontEnd\build\scss\pages\_profile.scss" />
+    <Content Include="FrontEnd\build\scss\pages\_projects.scss" />
+    <Content Include="FrontEnd\build\scss\parts\adminlte.components.scss" />
+    <Content Include="FrontEnd\build\scss\parts\adminlte.core.scss" />
+    <Content Include="FrontEnd\build\scss\parts\adminlte.extra-components.scss" />
+    <Content Include="FrontEnd\build\scss\parts\adminlte.light.scss" />
+    <Content Include="FrontEnd\build\scss\parts\adminlte.pages.scss" />
+    <Content Include="FrontEnd\build\scss\parts\adminlte.plugins.scss" />
+    <Content Include="FrontEnd\build\scss\parts\_components.scss" />
+    <Content Include="FrontEnd\build\scss\parts\_core.scss" />
+    <Content Include="FrontEnd\build\scss\parts\_extra-components.scss" />
+    <Content Include="FrontEnd\build\scss\parts\_miscellaneous.scss" />
+    <Content Include="FrontEnd\build\scss\parts\_pages.scss" />
+    <Content Include="FrontEnd\build\scss\parts\_plugins.scss" />
+    <Content Include="FrontEnd\build\scss\plugins\_bootstrap-slider.scss" />
+    <Content Include="FrontEnd\build\scss\plugins\_bootstrap-switch.scss" />
+    <Content Include="FrontEnd\build\scss\plugins\_daterangepicker.scss" />
+    <Content Include="FrontEnd\build\scss\plugins\_fullcalendar.scss" />
+    <Content Include="FrontEnd\build\scss\plugins\_icheck-bootstrap.scss" />
+    <Content Include="FrontEnd\build\scss\plugins\_jqvmap.scss" />
+    <Content Include="FrontEnd\build\scss\plugins\_mapael.scss" />
+    <Content Include="FrontEnd\build\scss\plugins\_miscellaneous.scss" />
+    <Content Include="FrontEnd\build\scss\plugins\_mixins.scss" />
+    <Content Include="FrontEnd\build\scss\plugins\_pace.scss" />
+    <Content Include="FrontEnd\build\scss\plugins\_select2.scss" />
+    <Content Include="FrontEnd\build\scss\plugins\_sweetalert2.scss" />
+    <Content Include="FrontEnd\build\scss\plugins\_toastr.scss" />
+    <Content Include="FrontEnd\build\scss\_adminlte.raw.scss" />
+    <Content Include="FrontEnd\build\scss\_alerts.scss" />
+    <Content Include="FrontEnd\build\scss\_animation-effects.scss" />
+    <Content Include="FrontEnd\build\scss\_bootstrap-variables.scss" />
+    <Content Include="FrontEnd\build\scss\_brand.scss" />
+    <Content Include="FrontEnd\build\scss\_buttons.scss" />
+    <Content Include="FrontEnd\build\scss\_callout.scss" />
+    <Content Include="FrontEnd\build\scss\_cards.scss" />
+    <Content Include="FrontEnd\build\scss\_carousel.scss" />
+    <Content Include="FrontEnd\build\scss\_close.scss" />
+    <Content Include="FrontEnd\build\scss\_colors.scss" />
+    <Content Include="FrontEnd\build\scss\_control-sidebar.scss" />
+    <Content Include="FrontEnd\build\scss\_direct-chat.scss" />
+    <Content Include="FrontEnd\build\scss\_dropdown.scss" />
+    <Content Include="FrontEnd\build\scss\_elevation.scss" />
+    <Content Include="FrontEnd\build\scss\_forms.scss" />
+    <Content Include="FrontEnd\build\scss\_info-box.scss" />
+    <Content Include="FrontEnd\build\scss\_layout.scss" />
+    <Content Include="FrontEnd\build\scss\_main-header.scss" />
+    <Content Include="FrontEnd\build\scss\_main-sidebar.scss" />
+    <Content Include="FrontEnd\build\scss\_miscellaneous.scss" />
+    <Content Include="FrontEnd\build\scss\_mixins.scss" />
+    <Content Include="FrontEnd\build\scss\_modals.scss" />
+    <Content Include="FrontEnd\build\scss\_navs.scss" />
+    <Content Include="FrontEnd\build\scss\_pagination.scss" />
+    <Content Include="FrontEnd\build\scss\_preloader.scss" />
+    <Content Include="FrontEnd\build\scss\_print.scss" />
+    <Content Include="FrontEnd\build\scss\_products.scss" />
+    <Content Include="FrontEnd\build\scss\_progress-bars.scss" />
+    <Content Include="FrontEnd\build\scss\_root.scss" />
+    <Content Include="FrontEnd\build\scss\_sidebar-mini.scss" />
+    <Content Include="FrontEnd\build\scss\_small-box.scss" />
+    <Content Include="FrontEnd\build\scss\_social-widgets.scss" />
+    <Content Include="FrontEnd\build\scss\_table.scss" />
+    <Content Include="FrontEnd\build\scss\_text.scss" />
+    <Content Include="FrontEnd\build\scss\_timeline.scss" />
+    <Content Include="FrontEnd\build\scss\_toasts.scss" />
+    <Content Include="FrontEnd\build\scss\_users-list.scss" />
+    <Content Include="FrontEnd\build\scss\_variables-alt.scss" />
+    <Content Include="FrontEnd\build\scss\_variables.scss" />
+    <Content Include="FrontEnd\dist\css\adminlte.css.map" />
+    <Content Include="FrontEnd\dist\css\adminlte.min.css.map" />
+    <Content Include="FrontEnd\dist\css\alt\adminlte.components.css.map" />
+    <Content Include="FrontEnd\dist\css\alt\adminlte.components.min.css.map" />
+    <Content Include="FrontEnd\dist\css\alt\adminlte.core.css.map" />
+    <Content Include="FrontEnd\dist\css\alt\adminlte.core.min.css.map" />
+    <Content Include="FrontEnd\dist\css\alt\adminlte.extra-components.css.map" />
+    <Content Include="FrontEnd\dist\css\alt\adminlte.extra-components.min.css.map" />
+    <Content Include="FrontEnd\dist\css\alt\adminlte.light.css.map" />
+    <Content Include="FrontEnd\dist\css\alt\adminlte.light.min.css.map" />
+    <Content Include="FrontEnd\dist\css\alt\adminlte.pages.css.map" />
+    <Content Include="FrontEnd\dist\css\alt\adminlte.pages.min.css.map" />
+    <Content Include="FrontEnd\dist\css\alt\adminlte.plugins.css.map" />
+    <Content Include="FrontEnd\dist\css\alt\adminlte.plugins.min.css.map" />
+    <Content Include="FrontEnd\dist\js\.eslintrc.json" />
+    <Content Include="FrontEnd\dist\js\adminlte.js.map" />
+    <Content Include="FrontEnd\dist\js\adminlte.min.js.map" />
+    <Content Include="FrontEnd\plugins\bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="FrontEnd\plugins\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="FrontEnd\plugins\bootstrap\js\bootstrap.js.map" />
+    <Content Include="FrontEnd\plugins\bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="FrontEnd\plugins\fontawesome-free\webfonts\fa-brands-400.eot" />
+    <Content Include="FrontEnd\plugins\fontawesome-free\webfonts\fa-brands-400.ttf" />
+    <Content Include="FrontEnd\plugins\fontawesome-free\webfonts\fa-brands-400.woff" />
+    <Content Include="FrontEnd\plugins\fontawesome-free\webfonts\fa-brands-400.woff2" />
+    <Content Include="FrontEnd\plugins\fontawesome-free\webfonts\fa-regular-400.eot" />
+    <Content Include="FrontEnd\plugins\fontawesome-free\webfonts\fa-regular-400.ttf" />
+    <Content Include="FrontEnd\plugins\fontawesome-free\webfonts\fa-regular-400.woff" />
+    <Content Include="FrontEnd\plugins\fontawesome-free\webfonts\fa-regular-400.woff2" />
+    <Content Include="FrontEnd\plugins\fontawesome-free\webfonts\fa-solid-900.eot" />
+    <Content Include="FrontEnd\plugins\fontawesome-free\webfonts\fa-solid-900.ttf" />
+    <Content Include="FrontEnd\plugins\fontawesome-free\webfonts\fa-solid-900.woff" />
+    <Content Include="FrontEnd\plugins\fontawesome-free\webfonts\fa-solid-900.woff2" />
+    <Content Include="FrontEnd\plugins\icheck-bootstrap\LICENSE" />
+    <Content Include="FrontEnd\plugins\jquery\jquery.min.map" />
+    <Content Include="FrontEnd\plugins\jquery\jquery.slim.min.map" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <None Include="Properties\PublishProfiles\1.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -247,8 +480,16 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -291,9 +532,20 @@
     <Content Include="Views\Dakk_Data\Details.cshtml" />
     <Content Include="Views\Dakk_Data\Edit.cshtml" />
     <Content Include="Views\Dakk_Data\Index.cshtml" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Views\Shared\_LoginView.cshtml" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper-utils.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Downloads\" />
+    <Folder Include="Downloads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -304,15 +556,22 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202112171051588_initialDB.resx">
-      <DependentUpon>202112171051588_initialDB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202112260503330_initialDB.resx">
+      <DependentUpon>202112260503330_initialDB.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
@@ -342,7 +601,17 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.20.0\build\Microsoft.ApplicationInsights.DependencyCollector.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.20.0\build\Microsoft.ApplicationInsights.DependencyCollector.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.20.0\build\Microsoft.ApplicationInsights.PerfCounterCollector.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.20.0\build\Microsoft.ApplicationInsights.PerfCounterCollector.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.20.0\build\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.20.0\build\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.ApplicationInsights.WindowsServer.2.20.0\build\Microsoft.ApplicationInsights.WindowsServer.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.ApplicationInsights.WindowsServer.2.20.0\build\Microsoft.ApplicationInsights.WindowsServer.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.ApplicationInsights.Web.2.20.0\build\Microsoft.ApplicationInsights.Web.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.ApplicationInsights.Web.2.20.0\build\Microsoft.ApplicationInsights.Web.targets'))" />
   </Target>
+  <Import Project="..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.20.0\build\Microsoft.ApplicationInsights.DependencyCollector.targets" Condition="Exists('..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.20.0\build\Microsoft.ApplicationInsights.DependencyCollector.targets')" />
+  <Import Project="..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.20.0\build\Microsoft.ApplicationInsights.PerfCounterCollector.targets" Condition="Exists('..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.20.0\build\Microsoft.ApplicationInsights.PerfCounterCollector.targets')" />
+  <Import Project="..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.20.0\build\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.targets" Condition="Exists('..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.20.0\build\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.targets')" />
+  <Import Project="..\packages\Microsoft.ApplicationInsights.WindowsServer.2.20.0\build\Microsoft.ApplicationInsights.WindowsServer.targets" Condition="Exists('..\packages\Microsoft.ApplicationInsights.WindowsServer.2.20.0\build\Microsoft.ApplicationInsights.WindowsServer.targets')" />
+  <Import Project="..\packages\Microsoft.ApplicationInsights.Web.2.20.0\build\Microsoft.ApplicationInsights.Web.targets" Condition="Exists('..\packages\Microsoft.ApplicationInsights.Web.2.20.0\build\Microsoft.ApplicationInsights.Web.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

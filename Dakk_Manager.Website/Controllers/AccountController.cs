@@ -396,7 +396,7 @@ namespace Dakk_Manager.Website.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Dakk_Data"); // first there was "Index", "Home"
+            return RedirectToAction("Login", "Account"); // first there was "Index", "Home"
         }
 
         //

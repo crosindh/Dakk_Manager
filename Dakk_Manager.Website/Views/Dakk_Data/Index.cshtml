@@ -23,13 +23,14 @@
         <p style="position:relative;display:inline-block;float:right;margin-left:5px;">
             Filter By Date on Dakk : <input type="date" name="DateonDakk" autocomplete="off" />
         </p>
-        <p style="position:center;float:left;top:-50px; left:50px; right:50px"> 
-           <p> Pending:@Html.Label((string)ViewBag.Pending_Status) </p>
-           <p> Seen:@Html.Label((string)ViewBag.Seen_Status) </p>
-           <p> Urgent:@Html.Label((string)ViewBag.Urgent_Status) </p> 
-        </p>
-        
-   
+
+        <div class="card">
+            <div class="card-header">
+                    <h3 class="card-title"> Pending = @ViewBag.Pending_Status</h3> <h3 class="card-title" style="padding-left:12px"> Seen = @ViewBag.Seen_Status </h3> <h3 class="card-title" style="padding-left:12px"> Urgent = @ViewBag.Urgent_Status </h3> <h3 class="card-title" style="padding-left:12px"> Objection = @ViewBag.Objection_Status </h3>
+                    <div class="card-tools">
+                    </div>
+                </div>
+        </div>
     <table class="table table-bordered @*table-condensed table-responsive table-striped*@" style="text-align:start; height:100%; width:100%;">
         <tr>
             <th>
@@ -86,9 +87,8 @@
 
         @foreach (var item in Model)
         {
-            if (item.Status=="Pending")
-            {
-            <tr @*style="background-color:#FF4D4D"*@>
+           
+            <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.UploadTime)
                 </td>
@@ -136,64 +136,11 @@
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
                     @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }) 
+                    @*@Html.ActionLink("Delete", "Delete", new { id = item.ID })*@ 
                 </td>
             </tr>
-            }
-            else
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UploadTime)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Number)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Department)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DateOnLetter)
-                    </td>
-
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Subject)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Givennumber)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Pages)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Addressee)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Sectionoforigin)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Receivedby)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Download PDF", "Download", new { dakkname = item.Pdfdirectory })
-                    </td>
-
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Status)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ForwardTo)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Comments)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                    </td>
-                </tr>
-            }
+            
+      
         }
     </table>
   
@@ -205,4 +152,4 @@
     SearchString = Request.QueryString["SearchString"],
     uploadDate = Request.QueryString["uploadDate"],
     DateonDakk = Request.QueryString["DateonDakk"]
-}),new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayItemSliceAndTotal = true })
+}),new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true })
