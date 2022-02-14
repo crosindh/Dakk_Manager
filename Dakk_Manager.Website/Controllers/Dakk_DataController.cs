@@ -57,9 +57,9 @@ namespace Dakk_Manager.Website.Controllers
 
             if ((User.IsInRole("Admin") || User.Identity.Name == "secretary") && SearchString != null)
             {
-                return View(db.Dakk_Data.Where(x => ((String.IsNullOrEmpty(SearchString) || x.Number.Contains(SearchString) || x.Department.Contains(SearchString)
+                return View(db.Dakk_Data.Where(x => (((String.IsNullOrEmpty(SearchString) || x.Number.Contains(SearchString) || x.Department.Contains(SearchString)
                                                                      || x.Sectionoforigin.Contains(SearchString) || x.Givennumber.Contains(SearchString) || x.Status.Contains(SearchString) ||
-                                                                     x.Subject.Contains(SearchString) || x.ForwardTo.Contains(SearchString)) || (x.Receivedby.Contains(SearchString))
+                                                                     x.Subject.Contains(SearchString) || x.ForwardTo.Contains(SearchString)) || x.Receivedby.Contains(SearchString))
                                                                      && (String.IsNullOrEmpty(DateonDakk) || x.DateOnLetter.Contains(DateonDakk))
                                                                      && (String.IsNullOrEmpty(uploadDate) || x.UploadTime.Contains(uploadDate)))).ToList().ToPagedList(pageNumber ?? 1, 10));
             }
