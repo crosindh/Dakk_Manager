@@ -207,7 +207,6 @@ namespace Dakk_Manager.Website.Controllers
             }
         }
 
-
         // GET: Dakk_Data/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -301,6 +300,9 @@ namespace Dakk_Manager.Website.Controllers
 
             var status_list = new List<string>() { "Pending", "Urgent", "Seen", "Objection" };
             ViewBag.list2 = status_list;
+
+            var forward_to_list = new List<string> {"Planning","Development","General","Admn-I","Admn-II","Health","Project","All Other Sections Will Be Added"};
+            ViewBag.list3 = forward_to_list;
         }
     }
 }

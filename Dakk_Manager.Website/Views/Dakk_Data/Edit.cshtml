@@ -107,7 +107,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ForwardTo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ForwardTo, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.EditorFor(model => model.ForwardTo, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.DropDownListFor(model => model.ForwardTo, new SelectList(ViewBag.list3), "--Select Section--", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ForwardTo, "", new { @class = "text-danger" })
             </div>
         </div>

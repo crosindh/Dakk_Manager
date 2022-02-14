@@ -137,6 +137,7 @@
                     @Html.DisplayFor(modelItem => item.Comments)
                 </td>
                 <td>
+                   
                     @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
                     @Html.ActionLink("Details", "Details", new { id = item.ID }) 
                     @if (User.IsInRole("Admin"))
