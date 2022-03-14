@@ -159,8 +159,9 @@ namespace Dakk_Manager.Website.Controllers
         [Authorize (Users ="R&I")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,DateOnLetter,DateReceived,Department,Subject,Givennumber,Pages,Addressee,Sectionoforigin,Receivedby,Pdfdirectory,Name,Number,UploadTime,Status")] Dakk_Data dakk_Data, HttpPostedFileBase file, string DakkDate, string ReceivedDate)
+        public ActionResult Create([Bind(Include = "ID,DateOnLetter,DateReceived,Department,Subject,Givennumber,Pages,Addressee,Sectionoforigin,Receivedby,Pdfdirectory,Name,Number,UploadTime,Status,CurrentLocation,ForwardTo")] Dakk_Data dakk_Data, HttpPostedFileBase file, string DakkDate, string ReceivedDate)
         {
+            dakk_Data.CurrentLocation = User.Identity.Name + " " + "=>" + " " + dakk_Data.ForwardTo;
 
             if (ModelState.IsValid)
             {
@@ -169,7 +170,8 @@ namespace Dakk_Manager.Website.Controllers
                 UploadDakk(dakk_Data, file, DakkDate, ReceivedDate);
 
                 db.SaveChanges();
-                return RedirectToAction("Create");
+                TempData["success"] = "Dakk Added Successfully";
+                return RedirectToAction("Index");
             }
             CreateStaticList();
             return View();
@@ -228,13 +230,24 @@ namespace Dakk_Manager.Website.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,DateOnLetter,DateReceived,Department,Subject,Givennumber,Pages,Addressee,Sectionoforigin,Pdfdirectory,Receivedby,Number,UploadTime,Status,ForwardTo,Comments")] Dakk_Data dakk_Data)
+        public ActionResult Edit([Bind(Include = "ID,DateOnLetter,DateReceived,Department,Subject,Givennumber,Pages,Addressee,Sectionoforigin,Pdfdirectory,Receivedby,Number,UploadTime,Status,ForwardTo,Comments,CurrentLocation")] Dakk_Data dakk_Data)
         {
+            if (User.Identity.Name != "R&I")
+            {
+                var currentlocation = dakk_Data.CurrentLocation;
+
+                dakk_Data.CurrentLocation = currentlocation +" "+ "=>" + " "+ dakk_Data.ForwardTo;
+            }
+            else
+            {
+                dakk_Data.CurrentLocation = User.Identity.Name + " " + "=>" + " " + dakk_Data.ForwardTo;
+            }
 
             if (ModelState.IsValid)
             {
                 db.Entry(dakk_Data).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["success"] = "Dakk Updated Successfully";
                 return RedirectToAction("Index");
             }
             return View(dakk_Data);
@@ -265,6 +278,7 @@ namespace Dakk_Manager.Website.Controllers
             Dakk_Data dakk_Data = db.Dakk_Data.Find(id);
             db.Dakk_Data.Remove(dakk_Data);
             db.SaveChanges();
+            TempData["success"] = "Dakk Deleted Successfully";
             return RedirectToAction("Index");
         }
 

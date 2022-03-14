@@ -235,9 +235,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202112260503330_initialDB.cs" />
-    <Compile Include="Migrations\202112260503330_initialDB.Designer.cs">
-      <DependentUpon>202112260503330_initialDB.cs</DependentUpon>
+    <Compile Include="Migrations\202203140502361_ColumnUpdatedDakk.cs" />
+    <Compile Include="Migrations\202203140502361_ColumnUpdatedDakk.Designer.cs">
+      <DependentUpon>202203140502361_ColumnUpdatedDakk.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -556,15 +556,15 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202112260503330_initialDB.resx">
-      <DependentUpon>202112260503330_initialDB.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202203140502361_ColumnUpdatedDakk.resx">
+      <DependentUpon>202203140502361_ColumnUpdatedDakk.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

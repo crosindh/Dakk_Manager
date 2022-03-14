@@ -2,11 +2,7 @@
 @using PagedList.Mvc
 @model IPagedList<Dakk_Manager.Website.Models.Dakk_Data>
 
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2></h2>
+<h3 class="text-success">@TempData["success"]</h3>
 
 @using (Html.BeginForm("Index", "Dakk_Data", FormMethod.Get))
 {
@@ -26,7 +22,7 @@
         <p style="position:relative;display:inline-block;float:right;margin-left:5px;">
             Filter By Date on Dakk : <input type="date" name="DateonDakk" autocomplete="off" />
         </p>
-
+   
         <div class="card">
             <div class="card-header">
                     <h3 class="card-title"> Pending = @ViewBag.Pending_Status</h3> <h3 class="card-title" style="padding-left:12px"> Seen = @ViewBag.Seen_Status </h3> <h3 class="card-title" style="padding-left:12px"> Urgent = @ViewBag.Urgent_Status </h3> <h3 class="card-title" style="padding-left:12px"> Objection = @ViewBag.Objection_Status </h3>
@@ -37,27 +33,23 @@
     <table class="table table-bordered @*table-condensed table-responsive table-striped*@" style="text-align:start; height:100%; width:100%;">
         <tr>
             <th>
-                @Html.DisplayName("UploadTime")
-                @*@Html.DisplayNameFor(model => model.First().UploadTime)*@
+                @Html.DisplayNameFor(model => model.First().UploadTime)
             </th>
 
             <th>
-                @Html.DisplayName("GivenDakkNumber")
-                @*@Html.DisplayNameFor(model => model.First().Number)*@
+                @Html.DisplayNameFor(model => model.First().Number)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.First().Department)
             </th>
             <th>
-                @Html.DisplayName("DateOfDakk")
-                @*@Html.DisplayNameFor(model => model.First().DateOnLetter)*@
+                @Html.DisplayNameFor(model => model.First().DateOnLetter)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.First().Subject)
             </th>
             <th>
-                @Html.DisplayName("IssuedNumber")
-                @*@Html.DisplayNameFor(model => model.First().Givennumber)*@
+                @Html.DisplayNameFor(model => model.First().Givennumber)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.First().Pages)
@@ -72,7 +64,6 @@
                 @Html.DisplayNameFor(model => model.First().Receivedby)
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.First().Pdfdirectory)*@
                 @Html.DisplayName("Download Dakk")
             </th>
 
@@ -81,6 +72,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.First().ForwardTo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().CurrentLocation)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.First().Comments)
@@ -132,6 +126,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ForwardTo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CurrentLocation)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Comments)

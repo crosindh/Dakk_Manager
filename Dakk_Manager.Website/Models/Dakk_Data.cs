@@ -67,6 +67,8 @@ namespace Dakk_Manager.Website.Models
         [Display(Name = "Upload File")]
         public string Pdfdirectory { get; set; }
 
+        [Display(Name ="Current Location")]
+        public string CurrentLocation { get; set; }
 
     }
 }

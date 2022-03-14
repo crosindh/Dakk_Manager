@@ -7,13 +7,13 @@ namespace Dakk_Manager.Website.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class initialDB : IMigrationMetadata
+    public sealed partial class ColumnUpdatedDakk : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(initialDB));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ColumnUpdatedDakk));
         
         string IMigrationMetadata.Id
         {
-            get { return "202112260503330_initialDB"; }
+            get { return "202203140502361_ColumnUpdatedDakk"; }
         }
         
         string IMigrationMetadata.Source

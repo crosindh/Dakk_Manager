@@ -3,7 +3,7 @@ namespace Dakk_Manager.Website.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initialDB : DbMigration
+    public partial class ColumnUpdatedDakk : DbMigration
     {
         public override void Up()
         {
@@ -27,6 +27,7 @@ namespace Dakk_Manager.Website.Migrations
                         Sectionoforigin = c.String(nullable: false),
                         Receivedby = c.String(nullable: false),
                         Pdfdirectory = c.String(),
+                        CurrentLocation = c.String(),
                     })
                 .PrimaryKey(t => t.ID);
             
