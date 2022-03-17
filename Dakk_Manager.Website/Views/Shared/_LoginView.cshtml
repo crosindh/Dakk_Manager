@@ -1,4 +1,5 @@
 ﻿<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -16,9 +17,9 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <!-- /.login-logo -->
-        <div class="card card-outline card-primary">
+        <div class="card card-outline card-success">
             <div class="card-header text-center">
-                <a href="~/Account/Login" class="h1"><b>P &amp; D<br /></b><h2>Dakk - Manager</h2></a>
+                <h1><b>P &amp; D<br /></b></h1><h2>Dakk - Manager</h2>
             </div>
             <div class="card-body">
               @RenderBody()
@@ -39,7 +40,7 @@
         @*@RenderBody()*@
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Central Record Office Sindh (CRO)</p>
+            <strong>Copyright &copy; @DateTime.Now.Year <a class="text-success">Planning &amp; Developemnt Department</a>.</strong> Developed by Central Record Office Sindh - CRO (SGA &amp; CD)
         </footer>
     </div>
    
@@ -47,3 +48,10 @@
 </body>
 </html>
 
+<style>
+    a:link, a:any-link {
+        color: green;
+        background-color: transparent;
+        text-decoration: none;
+    }
+</style>

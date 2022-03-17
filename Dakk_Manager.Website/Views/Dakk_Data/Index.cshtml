@@ -2,14 +2,14 @@
 @using PagedList.Mvc
 @model IPagedList<Dakk_Manager.Website.Models.Dakk_Data>
 
-<h3 class="text-success">@TempData["success"]</h3>
+<h3 class="text-primary">@TempData["success"]</h3>
 
 @using (Html.BeginForm("Index", "Dakk_Data", FormMethod.Get))
 {
     if (User.Identity.Name == "R&I")
     {
         <p style="position:relative;float:right;margin-left:15px">
-            <input class="btn btn-primary" type="button" title="Create New" value="Create New" onclick="location.href = '/Dakk_Data/Create'" />
+            <input class="btn btn-success" type="button" title="Create New" value="Create New" onclick="location.href = '/Dakk_Data/Create'" />
         </p>
     }
         <p style="position:relative;float:right;margin-left:10px;">
