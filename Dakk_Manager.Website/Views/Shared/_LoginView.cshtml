@@ -15,11 +15,16 @@
     <link rel="stylesheet" href="~/FrontEnd/dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition login-page">
+        <div class="text-center">
+            <h3><strong>Planning &amp; Development</strong></h3>
+            <h4><strong>DAKK - MANAGER</strong></h4>
+        </div>
     <div class="login-box">
         <!-- /.login-logo -->
-        <div class="card card-outline card-success">
-            <div class="card-header text-center">
-                <h1><b>P &amp; D<br /></b></h1><h2>Dakk - Manager</h2>
+        <div class="card card-outline card-success" style="height:485px">
+            <div class="text-center row justify-content-center pt-4">
+                <img src="~/Content/images/CRO LOGO.jpg" class = "icon d-flex align-items-center justify-content-center" style="width:100px;height:100px;"/>
+                <h3 style="color:#0a7639"><strong>GOVERNMENT OF SINDH</strong></h3>
             </div>
             <div class="card-body">
               @RenderBody()
@@ -38,19 +43,19 @@
   
     <div class="container body-content">
         @*@RenderBody()*@
-        <hr />
-        <footer>
+        <br />
+        <hr/>
+        <footer style="text-align:center">
             <strong>Copyright &copy; @DateTime.Now.Year <a class="text-success">Planning &amp; Developemnt Department</a>.</strong> Developed by Central Record Office Sindh - CRO (SGA &amp; CD)
         </footer>
     </div>
    
-
 </body>
 </html>
 
 <style>
     a:link, a:any-link {
-        color: green;
+        color: #28a745;
         background-color: transparent;
         text-decoration: none;
     }

@@ -24,13 +24,20 @@
         </p>
    
         <div class="card">
-            <div class="card-header">
-                    <h3 class="card-title"> Pending = @ViewBag.Pending_Status</h3> <h3 class="card-title" style="padding-left:12px"> Seen = @ViewBag.Seen_Status </h3> <h3 class="card-title" style="padding-left:12px"> Urgent = @ViewBag.Urgent_Status </h3> <h3 class="card-title" style="padding-left:12px"> Objection = @ViewBag.Objection_Status </h3>
-                    <div class="card-tools">
+            <div class="card-header">    
+                <h3 class="card-title"> Pending = @ViewBag.Pending_Status</h3> 
+                <h3 class="card-title" style="padding-left:12px"> Seen = @ViewBag.Seen_Status </h3> 
+                <h3 class="card-title" style="padding-left:12px"> Urgent = @ViewBag.Urgent_Status </h3> 
+                <h3 class="card-title" style="padding-left:12px"> Objection = @ViewBag.Objection_Status </h3>
+                    
+                <div class="card-tools">    
                     </div>
-                </div>
+                
+            </div>
         </div>
-    <table class="table table-bordered @*table-condensed table-responsive table-striped*@" style="text-align:start; height:100%; width:100%;">
+        
+        <div>
+            <table class="table table-bordered table-condensed table-responsive table-striped" style="text-align:center; height:100%; width:100%;">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.First().UploadTime)
@@ -136,7 +143,7 @@
                 <td>
                    
                     @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }) 
+                    @Html.ActionLink("View Details", "Details", new { id = item.ID }) 
                     @if (User.IsInRole("Admin"))
                     {
                     @Html.ActionLink("Delete", "Delete", new { id = item.ID }) 
@@ -147,7 +154,7 @@
       
         }
     </table>
-  
+  </div>
 }
 
 @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new

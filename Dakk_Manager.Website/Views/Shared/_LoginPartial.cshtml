@@ -6,10 +6,14 @@
     @Html.AntiForgeryToken()
 
     <ul class="nav navbar-nav navbar-right">
-        <li class="text-success">
-            @Html.ActionLink("Change Password" , "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+        <li>
+            <a href="~/Manage/Index"style="font-size:large;color:#0a7639"><strong>Change Password</strong></a>
         </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()"  style="padding-left:12px">  Log off</a></li>
+        <li >
+            <a href="javascript:document.getElementById('logoutForm').submit()"  style="padding-left:12px;color:#0a7639">
+                <strong>Log Off</strong>
+            </a>
+        </li>
     </ul>
     }
 }
@@ -17,6 +21,7 @@ else
 {
     <ul class="nav navbar-nav navbar-right">
       
-        <li class="text-success">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+     
     </ul>
 }

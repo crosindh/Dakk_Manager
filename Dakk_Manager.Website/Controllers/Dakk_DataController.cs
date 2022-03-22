@@ -232,6 +232,7 @@ namespace Dakk_Manager.Website.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,DateOnLetter,DateReceived,Department,Subject,Givennumber,Pages,Addressee,Sectionoforigin,Pdfdirectory,Receivedby,Number,UploadTime,Status,ForwardTo,Comments,CurrentLocation")] Dakk_Data dakk_Data)
         {
+           
             if (User.Identity.Name != "R&I")
             {
                 var currentlocation = dakk_Data.CurrentLocation;
@@ -245,6 +246,7 @@ namespace Dakk_Manager.Website.Controllers
 
             if (ModelState.IsValid)
             {
+
                 db.Entry(dakk_Data).State = EntityState.Modified;
                 db.SaveChanges();
                 TempData["success"] = "Dakk Updated Successfully";
