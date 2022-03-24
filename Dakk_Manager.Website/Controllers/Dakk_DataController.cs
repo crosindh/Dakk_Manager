@@ -7,17 +7,16 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.IO;
-using System.Net.Mail;
 using PagedList;
-using PagedList.Mvc;
-using Dakk_Manager.Website.Models;
+using Dakk_Manager.DataAccess;
+using Dakk_Manager.Models;
 
 namespace Dakk_Manager.Website.Controllers
 {
     [Authorize]
     public class Dakk_DataController : Controller
     {
-        private DMContext db = new DMContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         //public static void SendEmail(string emailbody)
         //{

@@ -1,14 +1,12 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Dakk_Manager.Website.Models;
+using Dakk_Manager.Models;
+using Dakk_Manager.DataAccess;
 
 namespace Dakk_Manager.Website.Controllers
 {

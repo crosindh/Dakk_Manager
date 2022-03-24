@@ -1,4 +1,4 @@
-﻿using Dakk_Manager.Website.Models;
+﻿using Dakk_Manager.DataAccess;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;

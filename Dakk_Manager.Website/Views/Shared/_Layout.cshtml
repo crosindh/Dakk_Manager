@@ -7,9 +7,9 @@
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="~/FrontEnd/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="~/Content/FrontEnd/plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="~/FrontEnd/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="~/Content/FrontEnd/dist/css/adminlte.min.css">
 </head>
 
 <body>
@@ -34,8 +34,7 @@
             @if (User.IsInRole("Admin"))
             {
                 <li style="margin-right:10px">
-                    @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
-
+                    <a href="~/Account/Register" style="color:#0a7639"><strong>Register New User</strong></a>
                 </li>
             }
             <li class="nav-item">
@@ -60,9 +59,9 @@
 
     </section>
 
-    <script src="~/FrontEnd/plugins/jquery/jquery.min.js"></script>
-    <script src="~/FrontEnd/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="~/FrontEnd/dist/js/adminlte.min.js"></script>
+    <script src="~/Content/FrontEnd/plugins/jquery/jquery.min.js"></script>
+    <script src="~/Content/FrontEnd/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/FrontEnd/dist/js/adminlte.min.js"></script>
 
 
 </body>

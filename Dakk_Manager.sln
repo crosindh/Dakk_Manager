@@ -5,6 +5,12 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dakk_Manager.Website", "Dakk_Manager.Website\Dakk_Manager.Website.csproj", "{9C50DDDF-B2F7-45AE-A65A-E577D0BFA98E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dakk_Manager.DataAccess", "Dakk_Manager.DataAccess\Dakk_Manager.DataAccess.csproj", "{DDCEA60E-CB26-490A-82E9-DC20A6D1D70C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dakk_Manager.Models", "Dakk_Manager.Models\Dakk_Manager.Models.csproj", "{F93AEB4F-D102-4187-936C-9382FDCDA2DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dakk_Manager.Utility", "Dakk_Manager.Utility\Dakk_Manager.Utility.csproj", "{174BB976-918C-4A9A-B637-99D46B19DCFC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{9C50DDDF-B2F7-45AE-A65A-E577D0BFA98E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C50DDDF-B2F7-45AE-A65A-E577D0BFA98E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C50DDDF-B2F7-45AE-A65A-E577D0BFA98E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDCEA60E-CB26-490A-82E9-DC20A6D1D70C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDCEA60E-CB26-490A-82E9-DC20A6D1D70C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDCEA60E-CB26-490A-82E9-DC20A6D1D70C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDCEA60E-CB26-490A-82E9-DC20A6D1D70C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F93AEB4F-D102-4187-936C-9382FDCDA2DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F93AEB4F-D102-4187-936C-9382FDCDA2DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F93AEB4F-D102-4187-936C-9382FDCDA2DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F93AEB4F-D102-4187-936C-9382FDCDA2DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{174BB976-918C-4A9A-B637-99D46B19DCFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{174BB976-918C-4A9A-B637-99D46B19DCFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{174BB976-918C-4A9A-B637-99D46B19DCFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{174BB976-918C-4A9A-B637-99D46B19DCFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

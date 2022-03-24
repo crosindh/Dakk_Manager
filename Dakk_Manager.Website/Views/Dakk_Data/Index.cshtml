@@ -1,6 +1,6 @@
 ﻿@using PagedList
 @using PagedList.Mvc
-@model IPagedList<Dakk_Manager.Website.Models.Dakk_Data>
+@model IPagedList<Dakk_Manager.Models.Dakk_Data>
 
 <h3 class="text-primary">@TempData["success"]</h3>
 
@@ -25,14 +25,18 @@
    
         <div class="card">
             <div class="card-header">    
-                <h3 class="card-title"> Pending = @ViewBag.Pending_Status</h3> 
-                <h3 class="card-title" style="padding-left:12px"> Seen = @ViewBag.Seen_Status </h3> 
-                <h3 class="card-title" style="padding-left:12px"> Urgent = @ViewBag.Urgent_Status </h3> 
-                <h3 class="card-title" style="padding-left:12px"> Objection = @ViewBag.Objection_Status </h3>
-                    
-                <div class="card-tools">    
-                    </div>
-                
+                <h3 class="card-title">
+                 Pending =<strong>@ViewBag.Pending_Status</strong>
+                </h3> 
+                <h3 class="card-title" style="padding-left:12px"> 
+                Seen =<strong>@ViewBag.Seen_Status</strong>
+                </h3> 
+                <h3 class="card-title" style="padding-left:12px"> 
+                Urgent =<strong>@ViewBag.Urgent_Status</strong>
+                </h3> 
+                <h3 class="card-title" style="padding-left:12px"> 
+                Objection =<strong>@ViewBag.Objection_Status</strong>
+                </h3>
             </div>
         </div>
         
