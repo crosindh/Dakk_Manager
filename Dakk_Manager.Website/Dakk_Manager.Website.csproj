@@ -281,6 +281,8 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Downloads\1_Planning_Pending_03-03-2022.pdf" />
+    <Content Include="Downloads\2_Planning_Seen_04-03-2022.pdf" />
     <None Include="Properties\PublishProfiles\Dakk-Manager.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -356,7 +358,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Downloads\" />
-    <Folder Include="Downloads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
