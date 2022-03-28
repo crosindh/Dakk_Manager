@@ -27,7 +27,11 @@
             </li>
 
         </ul>
-
+        <ul class="nav navbar-nav navbar-center">
+            <li class="nav-item" style="color:#0a7639">
+                <strong>You're Logged In As  = @User.Identity.Name</strong>
+            </li>
+        </ul>
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
 
@@ -37,7 +41,7 @@
                     <a href="~/Account/Register" style="color:#0a7639"><strong>Register New User</strong></a>
                 </li>
             }
-            <li class="nav-item">
+            
             <li class="nav-item d-none d-sm-inline-block">
                 @Html.Partial("_LoginPartial")
             </li>
@@ -91,4 +95,9 @@
         background-color: transparent;
         text-decoration: none;
     }
+    .navbar-nav.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+}
 </style>

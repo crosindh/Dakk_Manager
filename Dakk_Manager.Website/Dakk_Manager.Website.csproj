@@ -381,6 +381,10 @@
       <Project>{F93AEB4F-D102-4187-936C-9382FDCDA2DC}</Project>
       <Name>Dakk_Manager.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Dakk_Manager.Utility\Dakk_Manager.Utility.csproj">
+      <Project>{174BB976-918C-4A9A-B637-99D46B19DCFC}</Project>
+      <Name>Dakk_Manager.Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -10,6 +10,7 @@ using System.IO;
 using PagedList;
 using Dakk_Manager.DataAccess;
 using Dakk_Manager.Models;
+using Dakk_Manager.Utility;
 
 namespace Dakk_Manager.Website.Controllers
 {
@@ -17,7 +18,7 @@ namespace Dakk_Manager.Website.Controllers
     public class Dakk_DataController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        private readonly StaticData staticData = new StaticData();
         //public static void SendEmail(string emailbody)
         //{
         //    //Specify the from and to email address
@@ -43,7 +44,7 @@ namespace Dakk_Manager.Website.Controllers
             //string mailbodymessage;
             //mailbodymessage = "You Have " + ViewBag.Pending_Status + " Dakk Pending" + Environment.NewLine + "You Have Seen " + ViewBag.Seen_Status + " Dakks " + Environment.NewLine + "You Have " + ViewBag.Urgent_Status + " Urgent Dakks";
             //SendEmail(mailbodymessage);
-            SetStatus_On_Dashboard();
+            SetStatusOnDashboard();
 
             if (!String.IsNullOrEmpty(uploadDate))
             {
@@ -54,7 +55,7 @@ namespace Dakk_Manager.Website.Controllers
                 DateonDakk = Convert.ToDateTime(DateonDakk).Date.ToString("dd-MM-yyyy");
             }
 
-            if ((User.IsInRole("Admin") || User.Identity.Name == "secretary") && SearchString != null)
+            if ((User.IsInRole(StaticData.AdminRole) || User.Identity.Name == StaticData.SecretaryRole) && SearchString != null)
             {
                 return View(db.Dakk_Data.Where(x => (((String.IsNullOrEmpty(SearchString) || x.Number.Contains(SearchString) || x.Department.Contains(SearchString)
                                                                      || x.Sectionoforigin.Contains(SearchString) || x.Givennumber.Contains(SearchString) || x.Status.Contains(SearchString) ||
@@ -62,7 +63,7 @@ namespace Dakk_Manager.Website.Controllers
                                                                      && (String.IsNullOrEmpty(DateonDakk) || x.DateOnLetter.Contains(DateonDakk))
                                                                      && (String.IsNullOrEmpty(uploadDate) || x.UploadTime.Contains(uploadDate)))).ToList().ToPagedList(pageNumber ?? 1, 10));
             }
-            if (User.IsInRole("Admin") || User.Identity.Name == "secretary")
+            if (User.IsInRole(StaticData.AdminRole) || User.Identity.Name == StaticData.SecretaryRole)
             {
                 return View(db.Dakk_Data.ToList().ToPagedList(pageNumber ?? 1, 10));
             }
@@ -86,49 +87,46 @@ namespace Dakk_Manager.Website.Controllers
 
         }
 
-        private void SetStatus_On_Dashboard()
+        private void SetStatusOnDashboard()
         {
      
            
-            if (User.IsInRole("Admin") || User.Identity.Name=="secretary")
+            if (User.IsInRole(StaticData.AdminRole) || User.Identity.Name == StaticData.SecretaryRole)
             {
-                var Check_Status = db.Dakk_Data.ToList();
+                ViewBag.Pending_Status = db.Dakk_Data.Where(x => x.Status == StaticData.Status1).Count();
 
-                Check_Status = db.Dakk_Data.Where(x => x.Status == "Pending").ToList();
-                ViewBag.Pending_Status = (Check_Status.Count()).ToString();
+                ViewBag.Seen_Status = db.Dakk_Data.Where(x => x.Status == StaticData.Status2).Count();
 
-                Check_Status = db.Dakk_Data.Where(x => x.Status == "Seen").ToList();
-                ViewBag.Seen_Status = (Check_Status.Count()).ToString();
+                ViewBag.Urgent_Status = db.Dakk_Data.Where(x => x.Status == StaticData.Status3).Count();
 
-                Check_Status = db.Dakk_Data.Where(x => x.Status == "Urgent").ToList();
-                ViewBag.Urgent_Status = (Check_Status.Count()).ToString();
-
-                Check_Status = db.Dakk_Data.Where(x => x.Status == "Objection").ToList();
-                ViewBag.Objection_Status = (Check_Status.Count()).ToString();
+                ViewBag.Objection_Status = db.Dakk_Data.Where(x => x.Status == StaticData.Status4).Count();
             }
             else
             {
-                var Check_Status1 = db.Dakk_Data.Where(x => x.Receivedby.Contains(User.Identity.Name)).ToList();
-                var Check_Status2 = db.Dakk_Data.Where(x => x.Receivedby.Contains(User.Identity.Name)).ToList();
-                Check_Status1 = db.Dakk_Data.Where(x => x.Status == "Pending" && (x.Receivedby.Contains(User.Identity.Name))).ToList();
-                Check_Status2 = db.Dakk_Data.Where(x => x.Status == "Pending" && (x.ForwardTo.Contains(User.Identity.Name))).ToList();
-                ViewBag.Pending_Status = (Check_Status1.Count() + Check_Status2.Count()).ToString();
+               
+                ViewBag.Pending_Status = ((db.Dakk_Data.Where(x => x.Status == StaticData.Status1 
+                                        && (x.Receivedby.Contains(User.Identity.Name))).Count()) + 
+                                        (db.Dakk_Data.Where(x => x.Status == StaticData.Status1 
+                                        && (x.ForwardTo.Contains(User.Identity.Name))).Count()));
 
-                Check_Status1 = db.Dakk_Data.Where(x => x.Status == "Seen" && (x.Receivedby.Contains(User.Identity.Name))).ToList();
-                Check_Status2 = db.Dakk_Data.Where(x => x.Status == "Seen" && (x.ForwardTo.Contains(User.Identity.Name))).ToList();
-                ViewBag.Seen_Status = (Check_Status1.Count() + Check_Status2.Count()).ToString();
+                ViewBag.Seen_Status = ((db.Dakk_Data.Where(x => x.Status == StaticData.Status2 
+                                        && (x.Receivedby.Contains(User.Identity.Name))).Count()) + 
+                                        (db.Dakk_Data.Where(x => x.Status == StaticData.Status2 
+                                        && (x.ForwardTo.Contains(User.Identity.Name))).Count()));
 
-                Check_Status1 = db.Dakk_Data.Where(x => x.Status == "Urgent" && (x.Receivedby.Contains(User.Identity.Name))).ToList();
-                Check_Status2 = db.Dakk_Data.Where(x => x.Status == "Urgent" && (x.ForwardTo.Contains(User.Identity.Name))).ToList();
-                ViewBag.Urgent_Status = (Check_Status1.Count() + Check_Status2.Count()).ToString();
+                ViewBag.Urgent_Status = ((db.Dakk_Data.Where(x => x.Status == StaticData.Status3 
+                                        && (x.Receivedby.Contains(User.Identity.Name))).Count()) + 
+                                        (db.Dakk_Data.Where(x => x.Status == StaticData.Status3 
+                                        && (x.ForwardTo.Contains(User.Identity.Name))).Count()));
 
-                Check_Status1 = db.Dakk_Data.Where(x => x.Status == "Objection" && (x.Receivedby.Contains(User.Identity.Name))).ToList();
-                Check_Status2 = db.Dakk_Data.Where(x => x.Status == "Objection" && (x.ForwardTo.Contains(User.Identity.Name))).ToList();
-                ViewBag.Objection_Status = (Check_Status1.Count() + Check_Status2.Count()).ToString();
+                ViewBag.Objection_Status = ((db.Dakk_Data.Where(x => x.Status == StaticData.Status4 
+                                        && (x.Receivedby.Contains(User.Identity.Name))).Count()) + 
+                                        (db.Dakk_Data.Where(x => x.Status == StaticData.Status4 
+                                        && (x.ForwardTo.Contains(User.Identity.Name))).Count()));
             }
            
         }
-
+        
         // GET: Dakk_Data/Details/5
         public ActionResult Details(int? id)
         {
@@ -145,7 +143,7 @@ namespace Dakk_Manager.Website.Controllers
         }
 
         // GET: Dakk_Data/Create
-        [Authorize(Users = "R&I")]
+        [Authorize(Users = StaticData.DataEntryUser)]
         public ActionResult Create()
         {
             CreateStaticList();
@@ -153,14 +151,13 @@ namespace Dakk_Manager.Website.Controllers
         }
 
         // POST: Dakk_Data/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize (Users ="R&I")]
+        [Authorize (Users = StaticData.DataEntryUser)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,DateOnLetter,DateReceived,Department,Subject,Givennumber,Pages,Addressee,Sectionoforigin,Receivedby,Pdfdirectory,Name,Number,UploadTime,Status,CurrentLocation,ForwardTo")] Dakk_Data dakk_Data, HttpPostedFileBase file, string DakkDate, string ReceivedDate)
+        public ActionResult Create([Bind(Include = "ID,DateOnLetter,DateReceived,Department,Subject,Givennumber,Pages,Addressee,Sectionoforigin,Receivedby,Pdfdirectory,Name,Number,UploadTime,Status,CurrentLocation,ForwardTo")] Dakk_Data dakk_Data, 
+                                    HttpPostedFileBase file, string DakkDate, string ReceivedDate)
         {
-            dakk_Data.CurrentLocation = User.Identity.Name + " " + "=>" + " " + dakk_Data.ForwardTo;
+            dakk_Data.CurrentLocation = User.Identity.Name + StaticData.StaticNavigationArrow + dakk_Data.ForwardTo;
 
             if (ModelState.IsValid)
             {
@@ -225,22 +222,20 @@ namespace Dakk_Manager.Website.Controllers
         }
 
         // POST: Dakk_Data/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,DateOnLetter,DateReceived,Department,Subject,Givennumber,Pages,Addressee,Sectionoforigin,Pdfdirectory,Receivedby,Number,UploadTime,Status,ForwardTo,Comments,CurrentLocation")] Dakk_Data dakk_Data)
         {
            
-            if (User.Identity.Name != "R&I")
+            if (User.Identity.Name != StaticData.DataEntryUser)
             {
                 var currentlocation = dakk_Data.CurrentLocation;
 
-                dakk_Data.CurrentLocation = currentlocation +" "+ "=>" + " "+ dakk_Data.ForwardTo;
+                dakk_Data.CurrentLocation = currentlocation + StaticData.StaticNavigationArrow + dakk_Data.ForwardTo;
             }
             else
             {
-                dakk_Data.CurrentLocation = User.Identity.Name + " " + "=>" + " " + dakk_Data.ForwardTo;
+                dakk_Data.CurrentLocation = User.Identity.Name + StaticData.StaticNavigationArrow + dakk_Data.ForwardTo;
             }
 
             if (ModelState.IsValid)
@@ -255,7 +250,7 @@ namespace Dakk_Manager.Website.Controllers
         }
 
         // GET: Dakk_Data/Delete/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = StaticData.AdminRole)]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -271,7 +266,7 @@ namespace Dakk_Manager.Website.Controllers
         }
 
         // POST: Dakk_Data/Delete/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = StaticData.AdminRole)]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -301,23 +296,10 @@ namespace Dakk_Manager.Website.Controllers
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, dakkname);
         }
         private void CreateStaticList()
-        {
-            var Deparment_list = new List<string>() { "Governor Secretariat / House" ,"Chief Minister","Services General Admin. Coord Deptt.","Finance",
-            "Investment Department","Planning & Development","Excise & Taxation","Board of Revenue","Home","Law & Parliamentary Affairs",
-            "Agriculture Supply & Prices","Food","Livestock & Fisheries", "Cooperation","Irrigation","Energy,Mines & Minerals Development","Industries & Commerce",
-            "Labour & Human Resources","Works & Services", "School Education", "Transport and Mass Transit", "Environment, Forest & Wildlife",
-            "Local Government & HTP","Housing & Town Planning","Katchi Abadies","Public Health Engineering and RDD","Health","Sports & Youth Affairs",
-            "Information & amp; Archives", "Minorities Affairs"," Culture, Tourism and Antiquities Department", "Information Technology", "College Education",
-            "Universities and Boards","Dept of Empowerment - Persons Disabilities",  "Population Welfare",  "Women Development",  "Rehabilitation",
-            "Social Welfare","Auqaf, Relgious Affairs & Zakat","Human Rights","Inter Provincial Coordination","Provincial Assembly","Provincial Ombudsman",
-            "Ombudsman for Protection against woman harassment at workplace","AG Sindh","Federal Govt","Sindh Revenue Board"};
-            ViewBag.list = Deparment_list;
-
-            var status_list = new List<string>() { "Pending", "Urgent", "Seen", "Objection" };
-            ViewBag.list2 = status_list;
-
-            var forward_to_list = new List<string> {"Planning","Development","General","Admn-I","Admn-II","Health","Project","All Other Sections Will Be Added"};
-            ViewBag.list3 = forward_to_list;
+        {   
+            ViewBag.list = staticData.DeparmentList;
+            ViewBag.list2 = staticData.StatusList;
+            ViewBag.list3 = staticData.ForwardToList;
         }
     }
 }
