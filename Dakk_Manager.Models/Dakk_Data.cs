@@ -32,7 +32,6 @@ namespace Dakk_Manager.Models
         [Display(Name = "Received Date Of Dakk")]
         public string DateReceived { get; set; }
 
-        //[Required]
         public string Department { get; set; }
 
         [Required]
